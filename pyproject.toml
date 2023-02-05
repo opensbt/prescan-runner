@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Prescan Runner"
+version = "1.0"
+authors = [
+  { name="Lev Sorokin", email="sorokin@fortiss.org" },
+]
+description = "Python interface to apply search based testing to ADS simulated in Prescan."
+readme = "README.md"
+requires-python = "==3.7"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: POSIX :: Windows",
+]
+dependencies = [
+]
