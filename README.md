@@ -1,5 +1,5 @@
 # Prescan Runner
-Prescan Runner is a plugin for OpenSBT to apply search based testing to a SUT simulated in Prescan.
+Prescan Runner is a plugin for OpenSBT to apply search based testing to system simulated in Prescan.
 
 ## Prerequisites
 This plugin is only compatible with the python 3.7 interpreter. Installation has been tested with Windows 10/11.
@@ -22,8 +22,17 @@ The current implemenation of this plugin has the following assumptions:
 
 Execute the following steps before running experiments with OpenSBT:
 
-1. Import the matlab engine ([s. here](https://de.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html))
+(Step 1 is only required once)
+
+1. Execute the following to import the matlab engine:
+
+    ```
+    cd MATLAB_DIR/extern/engines/python
+    py -3.7 setup.py install --prefix="C:\Path\To\Project\venv"
+
+    ```
+    Further description/options are available [here](https://de.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html).
 
 2. Start MATLAB via Prescan using: `matlab.engine.shareEngine`
 
-3. Make sure all files are added to the matlab path which a required for executing the simulink SUT
+3. Make sure all files have been added to the matlab path which a required for executing the simulink SUT
