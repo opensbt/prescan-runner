@@ -3,22 +3,17 @@ import matlab.engine
 import os
 from pathlib import Path
 
-def addExperimentLibsPath(eng):
-    libsFolder = "prescan_simulation" + os.sep + "libs" + os.sep + "generic"
-    abspath = os.getcwd() + os.sep + libsFolder
-    eng.addpath(abspath, nargout=0)
-
-def addVariable(eng,name, value):
+def add_variable(eng,name, value):
     eng.workspace[name] = value
 
-def refreshWorkspace(eng):
+def refresh_workspace(eng):
     eng.eval("clear", nargout=0)
-    addVariable(eng,"NUTS_defined", True)
+    add_variable(eng,"NUTS_defined", True)
 
 def cd(eng,path):
     eng.cd(path)
 
-def addPath(eng, path, recursive=False):
+def add_path(eng, path, recursive=False):
     if recursive:
         if not os.path.isdir(path):
             path = Path(path).parent
@@ -27,7 +22,7 @@ def addPath(eng, path, recursive=False):
     else:
         eng.addpath(path, nargout=0)
 
-def connectToMatlab():
+def connect_to_matlab():
     future = matlab.engine.connect_matlab(background=True)
     if future is None:
         print("++ no matlab session is shared")
@@ -37,15 +32,7 @@ def connectToMatlab():
         eng = future.result()
         return eng
 
-def connectToPrescanMatlab():
-    eng = connectToMatlab()
-    if eng is not None:
-        addExperimentLibsPath(eng)
-    else:
-        print("++ could not add prescan exp libs ")
-    return eng
-
-def changeToDirFile(eng,filepath):
+def change_to_dir_file(eng,filepath):
     p = Path(filepath)
     experimentDir = p.parent
     cd(eng,str(experimentDir))

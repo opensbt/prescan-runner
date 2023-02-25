@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "Prescan Runner"
+name = "prescan_runner"
 version = "1.0"
 authors = [
   { name="Lev Sorokin", email="sorokin@fortiss.org" },
@@ -15,6 +15,4 @@ classifiers = [
   "Programming Language :: Python :: 3",
   "License :: OSI Approved :: MIT License",
   "Operating System :: POSIX :: Windows",
-]
-dependencies = [
 ]
