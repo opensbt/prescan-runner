@@ -1,6 +1,5 @@
 # Prescan Runner
-Prescan Runner is a plugin for OpenSBT to apply search based testing to system simulated in Prescan.
-
+Prescan Runner is a plugin for OpenSBT to apply search based testing to a SUT simulated in Prescan.
 
 ## Prerequisites
 This plugin is only compatible with the python 3.7 interpreter. Installation has been tested with Windows 10/11.
