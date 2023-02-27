@@ -7,8 +7,8 @@ This plugin is only compatible with the python 3.7 interpreter. Installation has
 ## Getting Started
 
 ### Python Wheel
-The easiest way to get the Prescan interface up and running is to build it as a Python package and install it.
-To build the package, run python -m build in the repository's root directory. Once completed, install the *.whl package found in the newly created dist/ folder via python -m pip install /path/to/the/package.whl
+The easiest way to get the Prescan Runner up and running is to build it as a Python package and install it.
+To build the package, run `python -m build` in the repository's root directory (npms build package has to be installed). Once completed, install the *.whl package found in the newly created dist/ folder via `python -m pip install /path/to/the/package.whl`
 
 ### Assumptions
 
