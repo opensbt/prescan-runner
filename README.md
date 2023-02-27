@@ -1,5 +1,5 @@
 # Prescan Runner
-Prescan Runner is a plugin for OpenSBT to apply search based testing to system simulated in Prescan.
+Prescan Runner is a plugin for OpenSBT to apply search-based testing to a system simulated in Prescan.
 
 ## Prerequisites
 This plugin is only compatible with the python 3.7 interpreter. Installation has been tested with Windows 10/11.
@@ -14,10 +14,10 @@ To build the package, run `python -m build` in the repository's root directory (
 
 The current implemenation of this plugin has the following assumptions:
 
-- The scenario is parametrized using `input.json` file
-- A `ChangeModel.m` script is provided to update the `.pb` experiment file using the `input.json file`
+- The scenario is parametrized using `input.json` file.
+- A `ChangeModel.m` script is provided to update the `.pb` experiment file using the `input.json file`.
 - The simulink model contains blocks to write traces of actors of interest into `trace_online.csv`.  
-
+- The prescan experiment has been compiled, i.e. simulation is triggered via running an executable.
 ### Before Running Experiment
 
 Execute the following steps before running experiments with OpenSBT:
