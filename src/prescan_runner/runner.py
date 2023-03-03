@@ -1,3 +1,8 @@
+# Copyright (c) 2023 fortiss GmbH
+#
+# This work is licensed under the terms of the MIT license.
+# For a copy, see <https://opensource.org/licenses/MIT>.
+
 import matlab.engine
 from prescan_runner.matutils import matlib
 from  prescan_runner.parser import parser 
