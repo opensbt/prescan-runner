@@ -6,45 +6,51 @@ Author-email: Lev Sorokin <sorokin@fortiss.org>
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: POSIX :: Windows
-Requires-Python: ==3.7
+Requires-Python: ==3.7.*
 Description-Content-Type: text/markdown
 License-File: LICENSE
 
 # Prescan Runner
-Prescan Runner is a plugin for OpenSBT to apply search-based testing to a system simulated in Prescan.
+Prescan Runner is a plugin for OpenSBT to apply search-based testing to a Simulink-based system simulated in [Prescan](https://plm.sw.siemens.com/en-US/simcenter/autonomous-vehicle-solutions/prescan/).
 
 ## Prerequisites
-This plugin is only compatible with the python 3.7 interpreter. Installation has been tested with Windows 10/11.
+This plugin is compatible with Python 3.8/3.7. Installation has been tested with Windows 10/11 and Prescan 2021.3.0.
 
 ## Getting Started
 
 ### Python Wheel
 The easiest way to get the Prescan Runner up and running is to build it as a Python package and install it.
-To build the package, run `python -m build` in the repository's root directory (npms build package has to be installed). Once completed, install the *.whl package found in the newly created dist/ folder via `python -m pip install /path/to/the/package.whl`
+To build the package, run `python -m build` in the repository's root directory (npms build package has to be installed before). Once completed, install the *.whl package found in the newly created `dist` folder via `python -m pip install /path/to/the/package.whl`
 
 ### Assumptions
 
-The current implemenation of this plugin has the following assumptions:
+The current implementation of Prescan Runner requires that following is assured:
 
-- The scenario is parametrized using `input.json` file.
-- A `ChangeModel.m` script is provided to update the `.pb` experiment file using the `input.json file`.
-- The simulink model contains blocks to write traces of actors of interest into `trace_online.csv`.  
-- The prescan experiment has been compiled, i.e. simulation is triggered via running an executable.
+- The scenario is parametrized using an `input.json` file. 
+- A `ChangeModel.m` script is provided to update the `.pb` experiment file using a file called `input.json file`. 
+- The simulink model contains blocks to write traces of actors of interest into `trace_online.csv`. The format of the output can be adapted [here](src/prescan_runner/parser/parser.py).
+- The prescan experiment has been compiled, i.e. simulation is triggered via running an executable. The name of the executable can be set [here](src/prescan_runner/runner.py).
+
 ### Before Running Experiment
 
 Execute the following steps before running experiments with OpenSBT:
 
-(Step 1 is only required once)
+(_Note, that step 1 is only required once._)
 
-1. Execute the following to import the matlab engine:
+1. Import the matlab engine into OpenSBT:
 
-    ```
+    ```bash
     cd MATLAB_DIR/extern/engines/python
-    py -3.7 setup.py install --prefix="C:\Path\To\Project\venv"
+    py -3.8 setup.py install --prefix="C:\Path\To\Project\venv"
 
     ```
     Further description/options are available [here](https://de.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html).
 
-2. Start MATLAB via Prescan using: `matlab.engine.shareEngine`
+2. Start MATLAB via the Prescan Process Manager.
 
-3. Make sure all files have been added to the matlab path which a required for executing the simulink SUT
+3. Share the MATLAB engine to be accessable by OpenSBT by executing from the MATLAB terminal: 
+
+    ```matlab
+    matlab.engine.shareEngine
+    ```
+3. Make sure all files have been added to the MATLAB path which a required for executing the simulink SUT, as done in [this](example/startup.m) example startup script.
