@@ -11,6 +11,8 @@ from  prescan_runner.parser import parser
 import os
 import subprocess
 import logging as log
+import prescan.api.experiment
+import prescan.api.simulink
 
 OUTPUT_FILENAME = "results.csv"
 TRACES_FILENAME = "trace_online.csv"
@@ -59,7 +61,11 @@ class Runner(Singleton):
 	
 	def run_experiment(self, name_executable):
 	    subprocess.run(name_executable + ".exe", cwd=os.path.dirname(self.exp_file), shell=True)
-
+	
+	def run_experiment_pb(self, sim_time, do_regenerate=True):
+		res = self.engine.runExperimentFromPb(self.exp_file, do_regenerate, simTime = sim_time)
+		return res
+	
 	def kill_run(self, path_kill_script):
 		log.info("Killing Prescan experiment execution...")
 		subprocess.Popen(path_kill_script, shell=True, stdout=subprocess.PIPE)
@@ -71,7 +77,9 @@ def run_scenario(input_json_name,
 				sim_time, 
 				output_filename=OUTPUT_FILENAME, 
 				traces_filename=TRACES_FILENAME,
-				path_kill_script=PATH_KILL_SCRIPT):
+				path_kill_script=PATH_KILL_SCRIPT,
+				do_regenerate=True,
+				run_from_pb_file=True):
 
 	runner = Runner(exp_file)
 	runner.update_experiment(input_json_name, 
@@ -85,7 +93,10 @@ def run_scenario(input_json_name,
 	log.info(f"[Prescan Runner] Running evaluation {Runner.eval_counter}")
 	while do_repeat and (repeat_counter <= MAX_REPEAT):
 		try:
-			runner.run_experiment(name_executable)
+			if run_from_pb_file:
+				runner.run_experiment_pb(sim_time=sim_time, do_regenerate=do_regenerate)
+			else:
+				runner.run_experiment(name_executable)
 			parent_dir = os.path.dirname(exp_file)
 			parsed = parser.parse_output(parent_dir + os.sep + output_filename, 
 						parent_dir + os.sep + traces_filename

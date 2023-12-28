@@ -3,7 +3,6 @@
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
-from sqlite3 import connect
 import matlab.engine
 import os
 from pathlib import Path
