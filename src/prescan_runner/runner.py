@@ -12,7 +12,6 @@ import os
 import subprocess
 import logging as log
 import prescan.api.experiment
-import prescan.api.simulink
 
 OUTPUT_FILENAME = "results.csv"
 TRACES_FILENAME = "trace_online.csv"
