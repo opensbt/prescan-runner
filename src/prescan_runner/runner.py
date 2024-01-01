@@ -62,7 +62,7 @@ class Runner(Singleton):
 	    subprocess.run(name_executable + ".exe", cwd=os.path.dirname(self.exp_file), shell=True)
 	
 	def run_experiment_pb(self, sim_time, do_regenerate=True):
-		res = self.engine.runExperimentFromPb(self.exp_file, do_regenerate, simTime = sim_time)
+		res = self.engine.runExperimentFromPb(self.exp_file, do_regenerate, sim_time)
 		return res
 	
 	def kill_run(self, path_kill_script):
