@@ -11,7 +11,6 @@ from  prescan_runner.parser import parser
 import os
 import subprocess
 import logging as log
-import prescan.api.experiment
 
 OUTPUT_FILENAME = "results.csv"
 TRACES_FILENAME = "trace_online.csv"
