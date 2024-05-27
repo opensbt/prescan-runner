@@ -47,6 +47,10 @@ def parse_output(filename_results, filename_traces):
             "other" : n_timesteps*[-100],# TODO add real values
             "ego" : n_timesteps*[-100]# TODO add real values
         },
+        "type": {
+            "ego" : "vehicle",
+            "other" : "pedestrian"
+        },
         "collisions" : [], # TODO identify the other vehicle of the collision
         "actors" : { 
                     "ego" : "ego",
